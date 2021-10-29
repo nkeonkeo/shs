@@ -1,0 +1,14 @@
+<script>
+var pre="http://sh.neko.sbs:1111";
+var list=[
+["Linux网络优化","/tools.sh"],
+["BBR","/bbr/bbr.sh"],
+["DD","/DD/AutoReinstall.sh"],
+["Easy Gost","/EasyGost/gost.sh"],
+["ehco.sh","/ehco.sh/ehco.sh"],
+["brook-pf","/brook-pf/brook-pf.sh"],
+];
+for(var x of list){
+document.write(`<p>${x[0]}: <a href="${pre+x[1]}">${pre+x[1]}</a></p>`)
+}
+</script>
