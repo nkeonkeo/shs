@@ -149,11 +149,11 @@ systemd --daemon-reload
 }
 
 bbr(){
-  wget -N "http://sh.neko.sbs/bbr/bbr.sh" -O bbr.sh && bash bbr.sh
+  wget -N "http://sh.nekoneko.cloud/bbr/bbr.sh" -O bbr.sh && bash bbr.sh
 }
 
 Update_Shell(){
-  wget -N "http://sh.neko.sbs/tools.sh" -O tools.sh && chmod +x tools.sh && ./tools.sh
+  wget -N "http://sh.nekoneko.cloud/tools.sh" -O tools.sh && chmod +x tools.sh && ./tools.sh
 }
 
 get_opsy() {

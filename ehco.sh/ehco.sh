@@ -46,7 +46,7 @@ InitialEhco() {
 	    mkdir $ehco_conf_dir
     fi
     if [ ! -e "/usr/bin/ehco" ]; then
-    	url="http://sh.neko.sbs/ehco.sh/ehco_1.1.0_linux_amd64"
+    	url="http://sh.nekoneko.cloud/ehco.sh/ehco_1.1.0_linux_amd64"
     	echo -e "${blue_prefix}[Info]${plain_prefix} 开始下载ehco文件..."
     	wget -O /usr/bin/ehco $url &> /dev/null
     	if [ $? -ne 0 ]; then
