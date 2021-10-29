@@ -144,12 +144,19 @@ DefaultLimitNOFILE=65535
 DefaultLimitNPROC=65535
 EOF
 
-systemd --daemon-reload
+systemctl daemon-reload
 
 }
 
 bbr(){
-  wget -N "http://sh.nekoneko.cloud/bbr/bbr.sh" -O bbr.sh && bash bbr.sh
+
+if uname -r|grep -q "^5."
+then
+    echo "已经是 5.x 内核，不需要更新"
+else
+    wget -N "http://sh.nekoneko.cloud/bbr/bbr.sh" -O bbr.sh && bash bbr.sh
+fi
+  
 }
 
 Update_Shell(){
