@@ -90,7 +90,7 @@ function Install_ct() {
   check_file
   check_sys
     rm -rf gost-linux-amd64-2.11.1.gz
-    wget --no-check-certificate http://sh.neko.sbs:1111/EasyGost/gost-linux-amd64-2.11.1.gz
+    wget --no-check-certificate http://sh.neko.sbs/EasyGost/gost-linux-amd64-2.11.1.gz
     gunzip gost-linux-amd64-2.11.1.gz
     mv gost-linux-amd64-2.11.1 gost
     mv gost /usr/bin/gost

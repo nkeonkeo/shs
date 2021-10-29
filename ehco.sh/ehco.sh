@@ -46,7 +46,7 @@ InitialEhco() {
 	    mkdir $ehco_conf_dir
     fi
     if [ ! -e "/usr/bin/ehco" ]; then
-    	url="http://sh.neko.sbs:1111/ehco.sh/ehco_1.1.0_linux_amd64"
+    	url="http://sh.neko.sbs/ehco.sh/ehco_1.1.0_linux_amd64"
     	echo -e "${blue_prefix}[Info]${plain_prefix} 开始下载ehco文件..."
     	wget -O /usr/bin/ehco $url &> /dev/null
     	if [ $? -ne 0 ]; then
@@ -182,7 +182,7 @@ AddNewRelay() {
 				break
 			fi
 		done
-		echo -e "${blue_prefix}[Tips]${plain_prefix}  Ehco支持动态域名(DDNS)、IPv4、IPv6的隧道搭建\n\t如需转发IPv6记得在IP两端加上${blue_prefix}[]${plain_prefix}，如${blue_prefix}[2606:4700:4700::1111]${plain_prefix}"
+		echo -e "${blue_prefix}[Tips]${plain_prefix}  Ehco支持动态域名(DDNS)、IPv4、IPv6的隧道搭建\n\t如需转发IPv6记得在IP两端加上${blue_prefix}[]${plain_prefix}，如${blue_prefix}[2606:4700:4700:]${plain_prefix}"
 		read -p "请输入远程IP或者域名：" remoteIP
 		read -p "请输入远程主机端口：" remotePort
 		echo -e "${blue_prefix}[Tips]${plain_prefix}  Ehco、Gost和其他隧道一样，都需要在中转和落地服务器两端分别部署发送端和接收端才可以连通\n\tEhco也提供单纯的流量转发，${yellow_prefix}raw${plain_prefix}模式就是一种单纯中转，它的作用和${yellow_prefix}iptables、brook${plain_prefix}中转无异"

@@ -99,10 +99,10 @@ Download_brook(){
     cd ${file}
     if [[ ${bit} == "x86_64" ]]; then
 		echo -e "${Info} 默认安装v20200801版"
-        wget --no-check-certificate -N "http://sh.neko.sbs:1111/brook-pf/brook_linux_amd64" -O brook
+        wget --no-check-certificate -N "http://sh.neko.sbs/brook-pf/brook_linux_amd64" -O brook
     else		
 		echo -e "${Info} 默认安装v20200801版"
-        wget --no-check-certificate -N "http://sh.neko.sbs:1111/brook-pf/brook_linux_386" -O brook
+        wget --no-check-certificate -N "http://sh.neko.sbs/brook-pf/brook_linux_386" -O brook
     fi
     [[ ! -e "brook" ]] && echo -e "${Error} Brook 下载失败 !" && exit 1
     chmod +x brook
@@ -110,14 +110,14 @@ Download_brook(){
 }
 Service_brook(){
     if [[ ${release} = "centos" ]]; then
-        if ! wget --no-check-certificate http://sh.neko.sbs:1111/brook-pf/brook-pf_centos -O /etc/init.d/brook-pf; then
+        if ! wget --no-check-certificate http://sh.neko.sbs/brook-pf/brook-pf_centos -O /etc/init.d/brook-pf; then
             echo -e "${Error} Brook服务 管理脚本下载失败 !" && exit 1
         fi
         chmod +x /etc/init.d/brook-pf
         chkconfig --add brook-pf
         chkconfig brook-pf on
     else
-        if ! wget --no-check-certificate http://sh.neko.sbs:1111/brook-pf/brook-pf_debian -O /etc/init.d/brook-pf; then
+        if ! wget --no-check-certificate http://sh.neko.sbs/brook-pf/brook-pf_debian -O /etc/init.d/brook-pf; then
             echo -e "${Error} Brook服务 管理脚本下载失败 !" && exit 1
         fi
         chmod +x /etc/init.d/brook-pf

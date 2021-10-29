@@ -81,7 +81,7 @@ installbbr() {
     if [[ ${bit} == "x86_64" ]]; then
       kernel_version="5.14.9"
       detele_kernel_head
-      headurl="http://sh.neko.sbs:1111/bbr/linux-headers-5.14.9_5.14.9-1_amd64.deb"
+      headurl="http://sh.neko.sbs/bbr/linux-headers-5.14.9_5.14.9-1_amd64.deb"
       imgurl="https://sh.neko.sbs/bbr/linux-image-5.14.9_5.14.9-1_amd64.deb"
       echo -e "正在检查headers下载连接...."
       checkurl $headurl
@@ -94,7 +94,7 @@ installbbr() {
     elif [[ ${bit} == "aarch64" ]]; then
       kernel_version="5.14.9"
       detele_kernel_head
-      headurl="http://sh.neko.sbs:1111/bbr/linux-headers-5.14.9_5.14.9-1_amd64.deb"
+      headurl="http://sh.neko.sbs/bbr/linux-headers-5.14.9_5.14.9-1_amd64.deb"
       imgurl="https://sh.neko.sbs/bbr/linux-image-5.14.9_5.14.9-1_amd64.deb"
       echo -e "正在检查headers下载连接...."
       checkurl $headurl
