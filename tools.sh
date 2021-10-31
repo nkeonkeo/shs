@@ -95,6 +95,11 @@ sysctl -p && sysctl --system
 ulimit_tune(){
 
 echo "1000000" > /proc/sys/fs/file-max
+sed -i '/fs.file-max/d' /etc/sysctl.conf
+cat >> '/etc/sysctl.conf' << EOF
+fs.file-max=1000000
+EOF
+
 ulimit -SHn 1000000 && ulimit -c unlimited
 echo "root     soft   nofile    1000000
 root     hard   nofile    1000000
