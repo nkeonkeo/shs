@@ -236,16 +236,17 @@ installbbr(){
 	mkdir bbr && cd bbr
 	
 	if [[ "${release}" == "centos" ]]; then
-		if [[ ${version} = "7" ]]; then
-			if [[ ${bit} = "x86_64" ]]; then
-				detele_kernel_head
-				rpm -import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-                rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
-                yum -y --enablerepo=elrepo-kernel install kernel-ml.x86_64 kernel-ml-devel.x86_64 kernel-ml-headers
-			else
-				echo -e "${Error} 不支持x86_64以外的系统 !" && exit 1
-			fi
+		rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+		yum install epel-release -y
+		if [[ ${version} = "7" ]]; then # centos7
+		  	yum install https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm -y
+		elif [[ ${version} = "8" ]]; then # centos8
+		  	yum install https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm -y
+		elif [[ ${version} = "9" ]]; then # centos9
+		  	yum install https://www.elrepo.org/elrepo-release-9.el9.elrepo.noarch.rpm -y
 		fi
+	    	yum --enablerepo=elrepo-kernel install kernel-ml -y
+		yum --enablerepo=elrepo-kernel install kernel-ml-headers -y
 		
 	elif [[ "${release}" == "debian" && $(cat /etc/issue | grep "10") ]]; then
 		if [[ ${bit} = "x86_64" || ${bit} = "aarch64" ]]; then
