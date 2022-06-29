@@ -250,9 +250,14 @@ installbbr(){
 	elif [[ "${release}" == "debian" && $(cat /etc/issue | grep "10") ]]; then
 		if [[ ${bit} = "x86_64" || ${bit} = "aarch64" ]]; then
 			echo "检测到Debian 10"
-			echo 'deb http://deb.debian.org/debian buster-backports main' > /etc/apt/sources.list.d/backports.list
+			if [[ $(cat /etc/resolv.conf | grep "1.1.1.1") || $(cat /etc/resolv.conf | grep "8.8.8.8") ]]; then
+				echo 'deb http://deb.debian.org/debian buster-backports main' > /etc/apt/sources.list.d/backports.list
+			else
+				echo 'deb http://mirrors.ustc.edu.cn/debian buster-backports main' > /etc/apt/sources.list.d/backports.list				
+			fi
 			apt update -y
-			apt install -t buster-backports linux-image-cloud-amd64 linux-headers-cloud-amd64 -y
+			apt install -t buster-backports linux-image-cloud-amd64 -y
+			apt install -t buster-backports linux-headers-cloud-amd64 -y
 		else
 			echo -e "${Error} 不支持x86_64及arm64/aarch64以外的系统 !" && exit 1	
 		fi
