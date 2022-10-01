@@ -257,7 +257,7 @@ get_system_info
 echo -e "当前系统信息: ${Font_color_suffix}$opsy ${Green_font_prefix}$virtual${Font_color_suffix} $arch ${Green_font_prefix}$kern${Font_color_suffix}
 "
 
-  read -p "请输入数字 :" num
+  read -p "请输入数字: " num
   case "$num" in
   0)
     Update_Shell
