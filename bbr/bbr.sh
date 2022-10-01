@@ -236,32 +236,32 @@ installbbr(){
 	mkdir bbr && cd bbr
 	
 	if [[ "${release}" == "centos" ]]; then
-		rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-		yum install epel-release -y
-		if [[ ${version} = "7" ]]; then # centos7
-		  	yum install https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm -y
-		elif [[ ${version} = "8" ]]; then # centos8
-		  	yum install https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm -y
-		elif [[ ${version} = "9" ]]; then # centos9
-		  	yum install https://www.elrepo.org/elrepo-release-9.el9.elrepo.noarch.rpm -y
-		fi
-	    	yum --enablerepo=elrepo-kernel install kernel-ml -y
-		yum --enablerepo=elrepo-kernel install kernel-ml-headers -y
-		
+		# rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+		# yum install epel-release -y
+		# if [[ ${version} = "7" ]]; then # centos7
+		#   	yum install https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm -y
+		# elif [[ ${version} = "8" ]]; then # centos8
+		#   	yum install https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm -y
+		# elif [[ ${version} = "9" ]]; then # centos9
+		#   	yum install https://www.elrepo.org/elrepo-release-9.el9.elrepo.noarch.rpm -y
+		# fi
+
+        	yum install --enablerepo=centos-kernel kernel-firmware kernel-headers kernel
+        	# yum install --enablerepo=centos-kernel-experimental kernel-firmware kernel-headers kernel
+
+	    	# yum --enablerepo=elrepo-kernel install kernel-ml -y
+		# yum --enablerepo=elrepo-kernel install kernel-ml-headers -y
+        
 	elif [[ "${release}" == "debian" && $(cat /etc/issue | grep "10") ]]; then
-		if [[ ${bit} = "x86_64" || ${bit} = "aarch64" ]]; then
-			echo "检测到Debian 10"
-			if [[ $(cat /etc/resolv.conf | grep "1.1.1.1") || $(cat /etc/resolv.conf | grep "8.8.8.8") ]]; then
-				echo 'deb http://deb.debian.org/debian buster-backports main' > /etc/apt/sources.list.d/backports.list
-			else
-				echo 'deb http://mirrors.ustc.edu.cn/debian buster-backports main' > /etc/apt/sources.list.d/backports.list				
-			fi
-			apt update -y
-			apt install -t buster-backports linux-image-cloud-amd64 -y
-			apt install -t buster-backports linux-headers-cloud-amd64 -y
+		echo "检测到Debian 10"
+		if [[ $(cat /etc/resolv.conf | grep "1.1.1.1") || $(cat /etc/resolv.conf | grep "8.8.8.8") ]]; then
+			echo 'deb http://deb.debian.org/debian buster-backports main' > /etc/apt/sources.list.d/backports.list
 		else
-			echo -e "${Error} 不支持x86_64及arm64/aarch64以外的系统 !" && exit 1	
+			echo 'deb http://mirrors.ustc.edu.cn/debian buster-backports main' > /etc/apt/sources.list.d/backports.list
 		fi
+		apt update -y
+		# apt install -t buster-backports linux-image-cloud-amd64 -y
+        	apt install -t buster-backports linux-image-amd64 -y
 		
 	elif [[ "${release}" == "ubuntu" || "${release}" == "debian" ]]; then
 		if [[ ${bit} = "x86_64" || ${bit} = "aarch64" ]]; then
