@@ -18,7 +18,6 @@ Powered by Neko Neko Cloud
 }
 tcp_tune(){ # 优化TCP窗口
 sed -i '/net.ipv4.tcp_no_metrics_save/d' /etc/sysctl.conf
-sed -i '/net.ipv4.tcp_no_metrics_save/d' /etc/sysctl.conf
 sed -i '/net.ipv4.tcp_ecn/d' /etc/sysctl.conf
 sed -i '/net.ipv4.tcp_frto/d' /etc/sysctl.conf
 sed -i '/net.ipv4.tcp_mtu_probing/d' /etc/sysctl.conf
