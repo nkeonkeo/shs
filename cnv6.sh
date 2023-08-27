@@ -1,5 +1,5 @@
 #!/bin/sh
-gw=$(ip a | grep inet6 | grep global | awk '{print $2}' | awk '{split($0,t,"::"); print t[1]"::1"}')
+gw=$(ip a | grep inet6 | grep global | head -n 1 | awk '{print $2}' | awk '{split($0,t,"::"); print t[1]"::1"}')
 curl https://ispip.clang.cn/cmcc_ipv6.txt -Ls > cnv6.zone
 curl https://ispip.clang.cn/cernet_ipv6.txt -Ls >> cnv6.zone
 curl https://ispip.clang.cn/unicom_cnc_ipv6.txt -Ls >> cnv6.zone
